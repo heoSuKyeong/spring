@@ -1,0 +1,17 @@
+package com.test.spring.di01;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		//Main > Hong > Pen 관계 삺피기
+		//Main은 Hong없이 업무를 실행할 수 없을 때 Hong을 의존한다고 한다.
+		//또한 hong을 Main의 의존객체(Dependency Object)라고 한다.
+		
+		
+		//main()을 실행하면 hong에게 업무를 위임하게된다.
+		Hong hong = new Hong();
+		hong.run();
+		
+		
+	}
+}

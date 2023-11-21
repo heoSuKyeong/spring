@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	스프링 설정 파일 
+	-bean
+	-<bean> : 자바 객체 1개를 의미한다.(object)
+			  수많은 bean을 관리하는 부모 태그
+			  스프링 프레임워크가 관리하는 객체이다.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 
+	스프링이 관리하는 객체를 Spring Bean라고 한다.
+	스프링이 com.test.spring.di02 패키지 내의 pen 존재를 인식한다.
+	 -->
+	<bean id="pen" class="com.test.spring.di02.Pen"></bean>
+	
+	
+	
+</beans>
+
+
+
+

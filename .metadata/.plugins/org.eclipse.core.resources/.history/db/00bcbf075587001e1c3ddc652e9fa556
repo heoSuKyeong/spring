@@ -1,0 +1,33 @@
+package com.test.spring.di02;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		//Spring DI 구현
+		
+		//스프링 설정
+		//1. XML 설정
+		//2. 어노테이션 설정
+		//3. Java 설정
+		
+		
+		//스프링 프레임워크 특징
+		//필요한 객체를 생성하고 소멸할 때까지의 과정을 스프링이 대신 관리해준다.
+		
+		//Pen 객체 생성하기
+		Pen p1 = new Pen();
+		p1.write();
+		
+		//Pen 객체를 스프링을 통해 생성하기 (xml 방식)
+		//xml 생성 (di02.xml)
+		//xml 읽기
+		//ApplicationContext context = new ClassPathXmlApplicationContext("xml 파일의 경로");
+		//ApplicationContext context = new ClassPathXmlApplicationContext("file:/src/main/java/com/test/di02/di02.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("com/test/di02/di02.xml");
+		
+		
+	}
+}

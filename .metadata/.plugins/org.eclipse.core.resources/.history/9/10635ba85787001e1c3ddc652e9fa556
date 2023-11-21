@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	스프링 설정 파일 
+	-bean
+	-<bean> : 자바 객체 1개를 의미한다.(object)
+			  수많은 bean을 관리하는 부모 태그
+			  스프링 프레임워크가 관리하는 객체이다.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+   	<!-- 순수 자바로 구현하는 DI -->
+	<!-- 
+	스프링이 관리하는 객체를 Spring Bean라고 한다.
+	스프링이 com.test.spring.di02 패키지 내의 pen 존재를 인식한다.
+	 -->
+	 
+	 <!-- 빈 등록 : 스프링이 관리하는 대상에 등록되었다. 오브젝트 생성된 단계X -->
+	<bean id="pen" class="com.test.spring.di02.Pen"></bean>
+	
+	<!-- name은 alias로 여러개 지정할 수 있다. -->
+	<bean id="brush" name="b1" class="com.test.spring.di02.Brush"></bean>
+	
+	
+	<!-- Spring DI -->
+	<!-- No constructor with 0 arguments defined in class : hong의 매개변수가 없어서 에러가 났다  -->
+	<!-- 정석 -->
+	<bean id="hong" class="com.test.spring.di02.Hong">
+		<constructor-arg>
+			<bean class="com.test.spring.di02.Pen"></bean>
+		</constructor-arg>
+	</bean>	
+	
+	<!-- 참조 -->
+	<bean id="hong" class="com.test.spring.di02.Hong">
+		<constructor-arg ref="pen"></constructor-arg>
+	</bean>	
+	
+	
+	
+</beans>
+
+
+
+

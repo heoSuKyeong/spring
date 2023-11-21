@@ -1,0 +1,11 @@
+package com.test.spring.di01;
+
+public class Hong {
+
+	public void run() {
+
+		Pen p = new Pen();
+		p.write();
+	}
+
+}
