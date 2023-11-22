@@ -1,0 +1,38 @@
+package com.test.spring.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class Ex06Controller {
+
+	//요청 메서드의 반환 자료형
+	
+	//1. String
+	//- JSP 파일명
+	//- ViewResolver 호출하여 jsp 파일명으로 반환했다.
+	/*
+	@GetMapping(value="/ex06.do")
+	public String test() {
+		return "ex06";
+	}
+	*/
+	/*
+	//2. void
+	// 자동으로 요청주소와 동일한 이름의 jsp 페이지를 찾아서 호출한다.
+	@GetMapping(value="/ex06.do")
+	public void test() {
+		
+	}
+	*/
+	
+	//3. String(키워드)
+	
+	@GetMapping(value="/ex06.do")
+	public String test() {
+		
+		return "redirect:/ex05.do";
+	}
+	
+	
+}

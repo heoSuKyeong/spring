@@ -1,0 +1,92 @@
+package com.test.spring.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.test.spring.domain.SpringDTO;
+
+@Controller
+public class Ex06Controller {
+
+	//요청 메서드의 반환 자료형
+	
+	//1. String
+	//- JSP 파일명
+	//- ViewResolver 호출하여 jsp 파일명으로 반환했다.
+	/*
+	@GetMapping(value="/ex06.do")
+	public String test() {
+		return "ex06";
+	}
+	*/
+	/*
+	//2. void
+	// 자동으로 요청주소와 동일한 이름의 jsp 페이지를 찾아서 호출한다.
+	@GetMapping(value="/ex06.do")
+	public void test() {
+		
+	}
+	*/
+	/*
+	//3. String(키워드)
+	// redirect
+	// forward
+	
+	@GetMapping(value="/ex06.do")
+	public String test() {
+		
+		//resp.sendRedirect("/ex05.do") 와 동일한 기능이다. resp를 선언하지 않아도 된다.
+		//return "redirect:/ex05.do";
+		
+		//pageContext.forward()
+		return "forward:/ex05.do";
+	}
+	*/
+	/*
+	//4. String(키워드)
+	@GetMapping(value="/ex06.do")
+	public String test(RedirectAttributes rttr) {
+		
+		String seq = "5";
+		String type = "2";
+		
+		rttr.addAttribute("seq", seq);
+		rttr.addAttribute("type", type);
+		
+		//return "redirect:/ex05.do?seq=" + seq + "&type=" + type;
+		
+		return "redirect:/ex05.do";
+		
+	}
+	*/
+	
+	//5. JSON 반환
+	@GetMapping(value="/ex06.do")
+	public @ResponseBody List<SpringDTO> SpringDTO test() {
+		
+		SpringDTO dto = new SpringDTO();
+		dto.setName("홍길동");
+		dto.setAge("20");
+		dto.setAddress("서울시");
+		
+		SpringDTO dto2 = new SpringDTO();
+		dto.setName("수수깡");
+		dto.setAge("26");
+		dto.setAddress("서울시");
+		
+		List<SpringDTO> list = new ArrayList<SpringDTO>();
+		list.add(dto);
+		list.add(dto2);
+		
+		return list;
+	}
+	
+	
+	
+	
+	
+}

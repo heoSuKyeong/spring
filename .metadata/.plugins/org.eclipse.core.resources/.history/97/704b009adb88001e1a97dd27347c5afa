@@ -1,0 +1,34 @@
+package com.test.spring.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class Ex05Controller {
+	
+	@GetMapping(value="/ex05.do")
+	//@RequestMapping(value="/ex05.do", method=RequestMethod.GET)
+	public String ex05() {
+		
+		return "ex05";
+	}
+	
+	@PostMapping(value="/ex05ok.do")
+	//@RequestMapping(value="/ex05ok.do", method=RequestMethod.POST)
+	public String ex05ok(HttpServletRequest req, HttpServletResponse resp) {
+		
+		//데이터 수신
+		// Servlet&JSP : req.getParameter(), req.getParameterValues()
+		// req를 사용하기 위해 HttpServletRequest 를 파라미터로 넣어준다.
+		
+		System.out.println(req == null);
+		System.out.println(resp == null);
+		
+		return "ex05ok";
+	}
+}

@@ -1,0 +1,37 @@
+package com.test.spring.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class BoardController {
+
+	// "/spring/board/lsit.do"
+	// "/spring/board/add.do"
+	// "/spring/board/addok.do"
+	// "/spring/board/view.do"
+	
+	@RequestMapping(value="/board/list.do")
+	public String list() {
+		
+		// 경로 : "WEB-INF/views/board/list.jsp"
+		return "board/list";
+	}
+	
+	@RequestMapping(value="/board/add.do")
+	public String add() {
+		
+		return "board/add";
+	}
+	
+	@RequestMapping(value="/board/addok.do")
+	public String addok() {
+		return "board/addok";
+	}
+	
+	@RequestMapping(value="/board/view.do")
+	public String view() {
+		return "board/view";
+	}
+	
+}

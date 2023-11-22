@@ -1,0 +1,5 @@
+package com.test.spring.domain;
+
+public class SpringDTO {
+
+}
