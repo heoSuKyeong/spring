@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace="파일명" -->
+<mapper namespace="test">
+<!-- 
+	MyBatis는 SQL를 XML 파일에서 관리한다.
+	JDBC는 SQL를 Java 파일에서 문자열로 관리했다. 순수한 문자열로 작성하기에 오타가 났는지 에러가 발생했는지 알 수 없었다.
+
+ -->
+ 
+ 	<!-- 자식태그 -->
+ <!-- 
+ 	<select id=""></select>
+ 	<insert id=""></insert>
+ 	<update id=""></update>
+ 	<delete id=""></delete>
+  -->
+ 	<select id="time" resultType="String">
+ 		select sysdate from dual
+ 	</select>
+ 
+ 
+</mapper>
