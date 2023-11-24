@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="code">
+	
+	<insert id="add" parameterType="com.test.domain.CodeDTO">
+		insert into tblCode (seq, subject, code, regdate, language) values (seqCode.nextval, #{subject}, #{code}, default, #{language})
+	</insert>
+	
+	<select id="list" parameterType="java.util.List"  resultType="com.test.domain.CodeDTO">
+		select seq, subject, regdate, language from tblCode
+		
+		<!-- 매개변수 language 하나만 넘어왔으므로 편의성을 위해 list로 칭한다 -->
+		<if test="list != null">
+			<where>
+				<!-- separator는 루프를 한번 돌면 뒤에 자동으로 붙여준다. -->
+				<foreach collection="list" item="lang" separator="or">
+					language = #{lang}
+				</foreach>
+			</where>
+		</if>
+		
+		order by seq desc
+	</select>
+	
+	
+	<select id="get" parameterType="String" resultType="com.test.domain.CodeDTO">
+		select * from tblCode where seq = #{seq}
+	</select>
+	
+</mapper>

@@ -5,10 +5,127 @@
 <mapper namespace="mybatis"> 
 
 	<!-- id명은 해당 sql문을 사용할 메서드 이름을 주로 사용한다. -->
+	<!-- 파라미터가 있을 때는 parameterType를 기재하는 것이 좋은데 클래스 자료형에 어디에 위치해있는지 패키지명을 반드시 기재해야한다. -->
 	<insert id="add" parameterType="com.test.domain.MyBatisDTO">
 		<!-- insert into tblMyBatis (seq, name, age, address, gender) values (seqMyBatis.nextVal, ?, ?, ?, ?) -->
 		insert into tblMyBatis (seq, name, age, address, gender) values (seqMyBatis.nextVal, #{name}, #{age}, #{address}, #{gender})
 	</insert>
-
+	
+	<update id="m1">
+		update tblMyBatis set age = age + 1
+	</update>
+	
+	<!-- java.lang은 자바에서 기본적인 패키지로 유일하게 생략가능한 패키지이다. -->
+	<!-- 매개변수(O) : 단일값 -->
+	<!-- mybatis는 넘어온 값을 #{key}로 표현하지만 나중에 JDBC에서 #{key}에서 ?로 바뀐다. 
+	데이터가 하나만 넘어왔기때문에 바인딩을 자동으로 해준다. 바인딩으로 key는 아무거나 써도 상관없지만 가독성을 높이기위해 컬럼명과 동일하게 사용한다. -->
+	<delete id="m2" parameterType="String">
+		delete from tblMyBatis where seq = #{seq}
+	</delete>
+	
+	<!-- 매개변수(O) : 다중값 -->
+	<insert id="m3" parameterType="com.test.domain.MyBatisDTO">
+		insert into tblMyBatis (seq, name, age, address, gender) values (seqMyBatis.nextVal, #{name}, #{age}, #{address}, #{gender})
+	</insert>
+	
+	
+	<!-- <update id="m4" parameterType="java.util.HashMap"> -->
+	<update id="m4" parameterType="map">
+		update tblMyBatis set address = #{address} where seq = #{seq}
+	</update>
+	
+	<!-- java.lang 생략 -->
+	<select id="m5" resultType="Integer">
+		select count(*) from tblMyBatis
+	</select>
+	
+	<!-- 자동으로 컬럼명과 변수를 매핑하기 위해서는 태그 네임, 멤버 변수 이름, 컬럼명이 같아야 한다. -->
+	<select id="m6" parameterType="String" resultType="com.test.domain.MyBatisDTO">
+		select * from tblMyBatis where seq = #{seq}
+	</select>
+	
+	<!-- select + N행 일 때는 resultType에는 1행의 자료형만 기재한다. 한 줄 만 봤을 때 이름 하나를 반환한다. 이름 하나는 자료형이 String이기에 List<String>이 아닌 String으로 기재한다. -->
+	<select id="m7" resultType="String">
+		select name from tblMyBatis
+	</select>
+	
+	<select id="m8" resultType="com.test.domain.MyBatisDTO">
+		select * from tblMyBatis
+	</select>
+	
+	<select id="m9" parameterType="String" resultType="Integer">
+		select count(*) from ${table}
+	</select>
+	
+	
+	<select id="m10" resultType="Integer">
+	<!-- 마크업 언어에서는 비교연산자(<, >)는 태그의 꺽쇠와 분별을 못해 인식을 못한다. -->
+		<!-- select count(*) from tblMyBatis where age <= 25 -->
+		<!-- select count(*) from tblMyBatis where age &lt;= 25 -->		<!-- 가독성이 떨어진다. -->
+		
+		select count(*) from tblMyBatis 
+		<![CDATA[
+		where age <= 25
+		]]>
+	</select>
+	
+	
+	<select id="m11" parameterType="String" resultType="com.test.domain.MyBatisDTO">
+		select * from tblMyBatis where address like '%${word}%'
+	</select>
+	
+	
+	<select id="m12" parameterType="String" resultType="String">
+	
+		<!-- select first_name from employees;
+		select last_name from employees; -->
+		<!-- 
+		<if test="type == 1">
+			select first_name from employees
+		</if>
+		
+		<if test="type == 2">
+			select last_name from employees
+		</if>
+		 -->
+		select
+			<if test="type == 1"> first_name</if>
+			<if test="type == 2"> last_name</if>
+		from employees
+		
+	</select>
+	
+	<select id="m13" parameterType="map" resultType="com.test.domain.MyBatisDTO">
+	 	<!-- //이름 검색 시, m13.do?column=name&word=홍길동
+		//주소 검색 시, m13.do?column=address&word=역삼
+		//나이 검색 시, m13.do?column=age&word=25
+		 -->
+		select * from tblMyBatis
+		
+			<!-- map의 key를 사용할 때는 #이나 $를 붙일 필요없이 바로 사용한다. -->
+			<!-- 
+			<if test="column == 'name'">
+			where name = #{word}
+			</if>
+			<if test="column == 'address'">
+			where address like '%' || #{word} || '%'
+			</if>
+			<if test="column == 'age'">
+			<![CDATA[ where age <= #{word} ]]>
+			</if>
+			 -->
+			<choose>
+				<when test="column == 'name'">
+					where name = #{word}
+				</when>
+				<when test="column == 'address'">
+					where address like '%' || #{word} || '%'
+				</when>
+				<otherwise>
+					<![CDATA[ where age <= #{word} ]]>
+				</otherwise>
+			</choose>
+			
+	</select>
 
 </mapper>

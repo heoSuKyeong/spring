@@ -86,7 +86,7 @@
 	 		
 	 		
 	 		-->
-	 		<!-- <aop:after method="log" pointcut-ref="p1"/> -->
+	 		<!--  <aop:after method="log" pointcut-ref="p1"/>  -->
 	 		<!-- <aop:before method="log" pointcut-ref="p1"/> -->
 	 		
 	 		<!-- 
@@ -99,10 +99,10 @@
 	 		<!-- <aop:after method="log" pointcut-ref="p5"/> -->
 	 		
 	 		<!-- around는 사용하기 힘들어서 또는 보조업무가 주업무를 감싸는 경우가 많지않아 사용빈도가 낮다 -->
-	 		<!-- <aop:around method="time" pointcut-ref="p5"/> -->
+	 		 <!-- <aop:around method="time" pointcut-ref="p5"/> -->
 	 		
 	 		<!-- returning은 매개변수 이름을 참조한다. -->
-	 		<!-- <aop:after-returning method="history" pointcut-ref="p2" returning="memo"/> -->
+	 		<!-- <aop:after-returning method="history" pointcut-ref="p2" returning="memo"/>  -->
 	 		
 	 		
 	 		<aop:after-throwing method="check" pointcut-ref="p2" throwing="e"/>

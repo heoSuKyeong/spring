@@ -16,4 +16,10 @@ select * from tblMyBatis;
 
 commit;
 
+select count(*) from tblMyBatis;
+
+
+
+
+
 

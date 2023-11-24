@@ -128,6 +128,8 @@ public class Ex05Controller {
 	@PostMapping(value="/ex05ok.do")
 	public String ex05ok(@ModelAttribute(name="data") String data) {
 		
+		System.out.println(data);
+		
 		return "ex05ok";
 	}
 	
