@@ -22,7 +22,7 @@ public class AOPController {
 		dao.list();
 		
 		//업무 구현 하지않고 흔적 남기기용
-		System.out.println("Controller.list()");
+		//System.out.println("Controller.list()");
 		return "list";
 	}
 	
@@ -32,7 +32,7 @@ public class AOPController {
 		dao.add();
 		
 		//업무 구현 하지않고 흔적 남기기용
-		System.out.println("Controller.add()");
+		//System.out.println("Controller.add()");
 		return "add";
 	}
 	
@@ -41,7 +41,7 @@ public class AOPController {
 		dao.view();
 		
 		//업무 구현 하지않고 흔적 남기기용
-		System.out.println("Controller.view()");
+		//S//ystem.out.println("Controller.view()");
 		return "view";
 
 	}

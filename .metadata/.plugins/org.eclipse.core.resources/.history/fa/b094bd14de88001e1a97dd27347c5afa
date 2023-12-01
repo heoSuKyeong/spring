@@ -1,8 +1,0 @@
-package com.test.spring.domain;
-
-@Data
-public class SpringDTO {
-	private String name;
-	private String age;
-	private String address;
-}

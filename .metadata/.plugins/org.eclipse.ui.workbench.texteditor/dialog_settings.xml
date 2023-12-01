@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Lombok"/>
+		<item key="selection" value="site-footer"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="lombok"/>
-			<item value="lobok"/>
-			<item value="dispatcherservlet"/>
-			<item value="dataSource"/>
-			<item value="sessionfactory"/>
-			<item value="junit"/>
-			<item value="log4"/>
-			<item value="lom"/>
-			<item value="plugin"/>
-			<item value="plgin"/>
-			<item value="jstl"/>
+			<item value="site-footer"/>
+			<item value="section-overlay"/>
+			<item value="images/"/>
+			<item value="imag"/>
+			<item value="site-header"/>
+			<item value=".site-header"/>
+			<item value="job-details.html"/>
+			<item value="Details"/>
+			<item value="index.html"/>
+			<item value="contact"/>
+			<item value="contact.html"/>
+			<item value="about.html"/>
+			<item value="html"/>
+			<item value="do"/>
+			<item value="job-listings.html"/>
 		</list>
 		<list key="replacehistory">
+			<item value="&lt;%=request.getContextPath() %&gt;/resources/images/"/>
+			<item value="jobDetails.do"/>
+			<item value=""/>
+			<item value="about.do"/>
+			<item value="jobListings.do"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

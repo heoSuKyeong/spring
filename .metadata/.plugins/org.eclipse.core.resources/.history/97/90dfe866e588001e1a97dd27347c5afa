@@ -1,9 +1,0 @@
-package com.test.spring.controller;
-
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class Ex06Controller {
-
-	
-}

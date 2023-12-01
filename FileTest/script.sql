@@ -18,3 +18,12 @@ create table tblPic(
 
 create sequence seqPlace;
 create sequence seqPic;
+
+select * from tblplace;
+select * from tblPic;
+
+--게시물의 등록된 첨부파일 갯수 확인용
+select a.*, (select count(*) from tblPic where pseq = a.seq) as picCount from tblPlace a order by seq desc;
+
+
+

@@ -1,5 +1,0 @@
-package com.test.spring.persistence;
-
-public class SpringDAOImpl {
-
-}
