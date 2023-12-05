@@ -200,6 +200,10 @@ html, body {
 					print('', `[\${message.sender}]님이 들어왔습니다.`, 'other', 'state', message.regdate);
 				} else if (message.code == '2') {
 					print('', `[\${message.sender}]님이 나갔습니다.`, 'other', 'state', message.regdate);
+				} else if (message.code == '3') {
+					print(message.sender, message.content, 'other', 'msg', message.regdate);
+				} else if (message.code == '4') {
+					printEmoticon(message.sender, message.content, 'other', 'msg', message.regdate);
 				}
 				
 			}
@@ -211,7 +215,7 @@ html, body {
 			console.log(`[\${new Date().toLocaleTimeString()}] \${msg}`);
 		}
 		
-		//대화창 출력
+		//대화창 출력 메소드
 		function print(name, msg, side, state, time) {
 			
 			let temp = `
@@ -225,6 +229,29 @@ html, body {
 			`;
 			
 			$('#list').append(temp);
+			
+			//새로운 내용이 추가되면 스크롤을 바닥으로 내린다.
+			scrollList();
+			
+		}
+		
+		//이모티콘 출력 메소드
+		function printEmoticon(name, msg, side, state, time) {
+			
+			let temp = `
+				<div class="item \${state} \${side}">
+					<div>
+						<div>\${name}</div>
+						<div style = "background-color:#fff; boarder:0;"><img src="/socket/resources/emoticon/\${msg}.png"></div>
+					</div>
+					<div>\${time}</div>
+				</div>
+			`;
+			
+			$('#list').append(temp);
+			
+			//새로운 내용이 추가되면 스크롤을 바닥으로 내린다. (이미지 로딩이 시간이 소요되서 0.1초의 시간차를 둔다.)
+			setTimeout(scrollList, 100);
 			
 		}
 		
@@ -246,6 +273,44 @@ html, body {
 			
 			//jOSN 문자열로 변환 후 전송
 			ws.send(JSON.stringify(message));
+		}
+		
+		$('#msg').keydown(function(evt) {
+			//엔터를 눌렀을 때, 입력한 대화 내용을 서버로 전달하기
+			if (evt.keyCode == 13) {	//엔터
+				
+				let message = {
+						code: '3',
+						sender: window.name,
+						receiver: '',
+						content: $('#msg').val(),
+						regdate: new Date().toLocaleString()
+				};
+			
+				//전송메시지 '/'로 시작하면 이모티콘 전송으로 설정한다.
+				if ($('#msg').val().startsWith('/')) {
+					message.code = '4';
+					//alert(message.content);
+				}
+			
+				ws.send(JSON.stringify(message));		
+				
+				$('#msg').val('').focus();
+				
+				//대화창 출력 메소드 활용
+				if (message.code == '3') {
+					print(window.name, message.content, 'me', 'msg', message.regdate);
+				} else if (message.code == '4') {
+					printEmoticon(window.name, message.content, 'me', 'msg', message.regdate);
+				}
+				
+			}
+		});
+		
+		//대화 스크롤 이벤트
+		function scrollList() {
+			//상대값 : 대화창을 출력하고 있는 <div> 크기에 맞춰 이동
+			$('#list').scrollTop($('#list').outerHeight() + 300);
 		}
 		
 	

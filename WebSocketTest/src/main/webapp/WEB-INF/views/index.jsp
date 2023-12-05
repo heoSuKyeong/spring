@@ -18,7 +18,7 @@
 	
 	<div>
 		<div class="group">
-			<label>대화명</label>
+			<label>닉네임</label>
 			<input type="text" name="name" id="name" class="short">
 		</div>
 	</div>
